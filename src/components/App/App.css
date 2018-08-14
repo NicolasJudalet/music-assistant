@@ -1,0 +1,58 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+  font-family: Arial, Helvetica, sans-serif
+}
+
+.Page-title {
+  text-align: left;
+  padding-left: 20px
+}
+
+.Exercice-section {
+  margin: 0.1em;
+}
+
+.Exercice-name {
+  margin-top: 0px;
+}
+
+.ProgressBarContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+}
+
+.TimeCounter {
+  flex-grow: 1;
+}
+
+.playPauseIcon {
+  flex-grow: 0;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
