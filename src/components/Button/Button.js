@@ -6,6 +6,7 @@ class Button extends Component {
 
        this.state = {
            color: 'blue',
+           initialColor: 'beige',
        }
    }
 
@@ -21,7 +22,7 @@ class Button extends Component {
                 onClick={() => this.handleClick()} 
                 style={{
                     color: this.state.color,
-                    backgroundColor: this.props.initialColor,
+                    backgroundColor: this.initialColor,
                 }}>
                New Button
            </button>
