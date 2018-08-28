@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
-import Button from '../Button/Button';
 import PlayPauseButton from '../PlayPauseButton/PlayPauseButton'
 import ProgressBar from '../ProgressBar/ProgressBar';
 
@@ -11,20 +9,25 @@ class App extends Component {
     super();
 
     this.state = {
-        mode: 'menu', // mode can be 'menu' (light background - before the ex starts) or 'focus' (dark background - during the ex)
+      timerRunning: false,
     }
-}
+    this.toggleTimer = this.toggleTimer.bind(this)
+  }
   
+  toggleTimer(e) {
+    e.preventDefault()
+    this.setState({
+      timerRunning: !this.state.timerRunning
+    })
+  }
+
   render() {
     return (
       <div className="App">
-        {/* <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header> */}
         <div className='BackgroundDiv'>
           <p className="Page-title">
             Mode Live
+            {this.state.timerRunning ? "running" : "not running"}
             <br/>
             <br/>
             <br/>
@@ -34,8 +37,18 @@ class App extends Component {
           <h1 className="Exercice-name">7 temps - Équivalences</h1>
 
           <div className="ProgressBarContainer">
-            <PlayPauseButton className='playPauseIcon'/>
-            <ProgressBar percent="10" strokeWidth="4" strokeColor="#D3D3D3" flexGrow="1"></ProgressBar>
+            <PlayPauseButton 
+              className='playPauseIcon'
+              timerRunning={this.state.timerRunning}
+              toggleTimerHandler={this.toggleTimer}
+            />
+            <ProgressBar 
+              percent="10" 
+              strokeWidth="4" 
+              strokeColor="#D3D3D3" 
+              flexGrow="1"
+              timerRunning={this.state.timerRunning}
+            />
           </div>
 
           <p>

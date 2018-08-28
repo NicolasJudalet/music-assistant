@@ -7,31 +7,30 @@ class ProgressBar extends Component {
     super(props);
 
     this.state = {
-        percent: 67,
+        percent: 0,
     }
-    this.increase = this.increase.bind(this);
-    this.start = this.start.bind(this);
+    this.startTimer = this.startTimer.bind(this);
+    this.stopTimer = this.stopTimer.bind(this);
   }
 
-  // componentDidMount() {
-  //   this.increase();
-  // }
-
-  increase() {
-    const percent = this.state.percent + 1;
-    if (percent >= 100) {
-      clearTimeout(this.tm);
-      return;
-    }
-    this.setState({ percent });
-    this.tm = setTimeout(this.increase, 1000);
+  startTimer(){
+    // console.log("start");
+    this.timer = setInterval(() => this.setState({
+      percent: this.state.percent + 1
+    }), 1000)
+  }
+  
+  stopTimer(){
+    // console.log("stop");
+    clearInterval(this.timer);
   }
 
-  start() {
-    clearTimeout(this.tm);
-    this.setState({ percent: 0 }, () => {
-      this.increase();
-    });
+  componentWillReceiveProps() {
+    if (!this.props.timerRunning){
+      this.startTimer();
+    } else {
+      this.stopTimer();
+    }
   }
 
   render() {

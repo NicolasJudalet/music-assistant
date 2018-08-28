@@ -19,7 +19,7 @@ class Button extends Component {
    render() {
        return (
            <button 
-                onClick={() => this.handleClick()} 
+                onClick={this.handleClick} 
                 style={{
                     color: this.state.color,
                     backgroundColor: this.initialColor,
