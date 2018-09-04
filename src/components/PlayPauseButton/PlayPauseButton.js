@@ -11,12 +11,6 @@ class PlayPauseButton extends Component {
        super(props);
    }
 
-//    handleClick() {
-//        this.setState({
-//            icon: PlayPauseButton.iconUrl.playIcon === this.state.icon ? PlayPauseButton.iconUrl.pauseIcon : PlayPauseButton.iconUrl.playIcon,
-//        });
-//    }
-
    render() {
        return (
            <button

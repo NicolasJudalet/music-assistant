@@ -5,20 +5,39 @@ import ProgressBar from '../ProgressBar/ProgressBar';
 
 class App extends Component {
   
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       timerRunning: false,
-    }
-    this.toggleTimer = this.toggleTimer.bind(this)
+      timeElapsed: 0,
+      totalTime: 10,
+      percentElapsed: 0,
+    };
   }
   
-  toggleTimer(e) {
-    e.preventDefault()
-    this.setState({
-      timerRunning: !this.state.timerRunning
-    })
+  toggleTimer = (e) => {
+    e.preventDefault();
+    this.setState((previousState) => ({ timerRunning: !previousState.timerRunning }));
+  }
+
+  startTimer(){
+    this.timer = setInterval(() => this.setState((prevState) => ({
+      timeElapsed: prevState.timeElapsed + 1,
+    })), 1000);
+  }
+    
+  stopTimer(){
+    clearInterval(this.timer);
+  }
+
+  componentWillUpdate(nextProps, nextState){
+    if (nextState.timerRunning) {
+      this.startTimer();
+    }
+    if (!nextState.timerRunning) {
+      this.stopTimer();
+    } 
   }
 
   render() {
@@ -27,10 +46,10 @@ class App extends Component {
         <div className='BackgroundDiv'>
           <p className="Page-title">
             Mode Live
-            {this.state.timerRunning ? "running" : "not running"}
             <br/>
+            timerRunning : {this.state.timerRunning ? 'Running' : 'Not Running'}
             <br/>
-            <br/>
+            timeElapsed : {this.state.timeElapsed}
           </p>
           
           <h2 className="Exercice-section">Rythme</h2>
@@ -43,11 +62,10 @@ class App extends Component {
               toggleTimerHandler={this.toggleTimer}
             />
             <ProgressBar 
-              percent="10" 
               strokeWidth="4" 
               strokeColor="#D3D3D3" 
               flexGrow="1"
-              timerRunning={this.state.timerRunning}
+              percentElapsed={this.state.percentElapsed}
             />
           </div>
 
