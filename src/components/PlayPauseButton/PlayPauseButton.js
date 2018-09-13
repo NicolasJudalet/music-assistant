@@ -19,7 +19,7 @@ class PlayPauseButton extends Component {
                     outline: 0,
                 }}>
                 <img
-                    src={this.props.timerRunning ? PlayPauseButton.iconUrl.pauseIcon : PlayPauseButton.iconUrl.playIcon}
+                    src={this.props.timerRunning && this.props.exerciseRunning ? PlayPauseButton.iconUrl.pauseIcon : PlayPauseButton.iconUrl.playIcon}
                     alt='play pause'
                     onClick={this.props.toggleTimerHandler}
                     width="40"

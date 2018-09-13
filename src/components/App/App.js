@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './App.css';
 import PlayPauseButton from '../PlayPauseButton/PlayPauseButton'
 import ProgressBar from '../ProgressBar/ProgressBar';
+import StyledApp from './App.style.js';
 
 class App extends Component {
 
@@ -11,8 +11,8 @@ class App extends Component {
     this.state = {
       timerRunning: false,
       timeElapsed: 0,
-      totalTime: 3,
-      timerFinished: false,
+      totalTime: 30,
+      exerciseRunning: false,
     };
   }
   
@@ -28,6 +28,7 @@ class App extends Component {
   }
 
   startTimer(){
+    this.state.exerciseRunning = true;
     this.timer = setInterval(() => {
       if (this.state.totalTime !== this.state.timeElapsed){
         this.setState((prevState) => ({
@@ -38,6 +39,7 @@ class App extends Component {
         this.setState({
           timerRunning: false,
           timerFinished: true,
+          exerciseRunning: false,
         });
       }
     }, 1000);
@@ -49,35 +51,28 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <div className='BackgroundDiv'>
-          <p className="Page-title">
-            Mode Live
-          </p>
-          
-          <h2 className="Exercice-section">Rythme</h2>
-          <h1 className="Exercice-name">7 temps - Équivalences</h1>
+      <StyledApp
+        exerciseRunning={this.state.exerciseRunning}
+      >
+        <p className='modeName'>Mode Live</p>
+        <h2>Rythme</h2>
+        <h1>7 temps - Équivalences</h1>
 
-          <div className="ProgressBarContainer">
-            <PlayPauseButton 
-              className='playPauseIcon'
-              timerRunning={this.state.timerRunning}
-              toggleTimerHandler={this.toggleTimer}
-            />
-            <ProgressBar 
-              strokeWidth="4" 
-              strokeColor="#D3D3D3" 
-              flexGrow="1"
-              percentElapsed={this.state.timeElapsed / this.state.totalTime * 100}
-            />
-          </div>
+        <div>
+          <PlayPauseButton 
+            timerRunning={this.state.timerRunning}
+            exerciseRunning={this.state.exerciseRunning}
+            toggleTimerHandler={this.toggleTimer}
+          />
+          <ProgressBar 
+            percentElapsed={this.state.timeElapsed / this.state.totalTime * 100}
+          />
+        </div>
 
-          <p>
-            {this.state.totalTime / 60} min
-          </p>
-          
-        </div> 
-      </div>
+        <p>
+          {this.state.totalTime / 60} min
+        </p>
+      </StyledApp>  
     );
   }
 }
