@@ -6,19 +6,30 @@ import LiveMode from '../LiveMode/LiveMode';
 import StarsFactory from '../StarsFactory/StarsFactory';
 import Home from '../Home/Home';
 
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import blue from '@material-ui/core/colors/blue';
+
+const theme = createMuiTheme({
+    palette: {
+      primary: blue
+    },
+  });
+
 class App extends Component {
     render() {
         return (
-            <StyledApp>
-                <Router>
-                    <div>
-                        <Route exact path="/" component={Home} />
-                        <Route path="/studio" component={Studio} />
-                        <Route path="/stars-factory" component={StarsFactory} />
-                        <Route path="/live-mode" component={LiveMode} />
-                    </div>
-                </Router>
-            </StyledApp>
+            <MuiThemeProvider theme={theme}>
+                <StyledApp>
+                    <Router>
+                        <div>
+                            <Route exact path="/" component={Home} />
+                            <Route path="/studio" component={Studio} />
+                            <Route path="/stars-factory" component={StarsFactory} />
+                            <Route path="/live-mode" component={LiveMode} />
+                        </div>
+                    </Router>
+                </StyledApp>
+            </MuiThemeProvider>
         );
     }
 }

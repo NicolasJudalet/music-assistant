@@ -1,33 +1,40 @@
 import React, { Component } from 'react';
+import playIconBlack from './playIconBlack.png';
+import playIconGray from './playIconGray.png';
+import pauseIconGray from './pauseIconGray.png';
+import StyledPlayPauseButton from './PlayPauseButton.style';
 
-class PlayPauseButton extends Component {
-
-    static iconUrl = {
-        playIcon: 'https://cdn.iconscout.com/public/images/icon/free/png-512/play-button-social-media-logo-38378301177154e7-512x512.png',
-        pauseIcon: 'https://cdn.iconscout.com/public/images/icon/premium/png-512/pause-button-3dd51b010ebcd1da-512x512.png',
-    };
-
+class PlayPauseButton extends Component {    
     constructor(props) {
        super(props);
-   }
+    }
 
-   render() {
-       return (
-           <button
-                style={{
-                    border: 0,
-                    outline: 0,
-                }}>
+    getIcon = () => {
+        let code;
+        code = 10 * (this.props.timerRunning && this.props.exerciseRunning) + this.props.exerciseRunning
+        switch (code) {
+            case 11:
+                return pauseIconGray;
+            case 1:
+                return playIconGray;
+            case 0:
+                return playIconBlack;
+        }
+    }
+
+    render() {
+        return (
+           <StyledPlayPauseButton 
+                exerciseRunning={this.props.exerciseRunning}
+                timerRunning={this.props.timerRunning}
+            >
                 <img
-                    src={this.props.timerRunning && this.props.exerciseRunning ? PlayPauseButton.iconUrl.pauseIcon : PlayPauseButton.iconUrl.playIcon}
+                    src={this.getIcon()}
                     alt='play pause'
                     onClick={this.props.toggleTimerHandler}
-                    width="40"
-                    height="40"                     
                 />
-           </button>
-                
-       )
+           </StyledPlayPauseButton>
+        )
    }
 }   
 
