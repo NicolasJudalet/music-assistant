@@ -17,6 +17,14 @@ const StyledLiveMode = styled.div`
     color: ${props => (props.exerciseRunning ? 'white' : 'black')};
     transition: color 2s;
   }
+
+  .header-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+  }
   
   .container {
     display: flex;
@@ -40,13 +48,11 @@ const StyledLiveMode = styled.div`
     transition: color 2s;
   }
   
-  .modeName {
+  .header-element {
     text-align: left;
-    padding-left: 20px;
     color: ${props => (props.exerciseRunning ? 'white' : 'black')};
     transition: color 2s;
-    padding-block-start: 1em;
-    margin-block-start: 0;
+    margin: 0;
   }
 `;
 

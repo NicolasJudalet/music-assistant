@@ -115,12 +115,35 @@ class LiveMode extends Component {
     });
   }
 
+  handleQuit = () => {
+    this.stopTimer();
+    this.setState((prevState) => ({
+      timerRunning: false,
+      exerciseRunning: false,
+      steps: [
+        ...prevState.steps.slice(0,prevState.activeStep),
+        {
+          ...prevState.steps[prevState.activeStep],
+          completed: false,
+          suspended: true,
+          timeElapsed: 0,
+        },
+        ...prevState.steps.slice(prevState.activeStep + 1)
+      ],
+    }));
+  }
+
   render() {
     return (
       <StyledLiveMode
         exerciseRunning={this.state.exerciseRunning}
       >
-        <p className='modeName'>Mode Live</p>
+        <div className='header-container'>
+          <p className='header-element'>Mode Live</p>
+          {this.state.exerciseRunning &&
+            <Button className='header-element' onClick={this.handleQuit} >Quitter l'exercice</Button>
+          }
+        </div>
         <h2>{this.state.steps[this.state.activeStep].exerciseType}</h2>
         <h1>{this.state.steps[this.state.activeStep].exerciseName}</h1>
 
