@@ -38,9 +38,10 @@ const StyledLiveMode = styled.div`
     flex-grow: 1;
   }
 
-  #buttonContainer {
-    opacity: ${props => (props.exerciseRunning ? 0 : 1)}
+  #button-container {
+    display: ${props => (props.exerciseRunning ? 'none' : 'block')}
     transition: opacity 2s;
+    margin: 0 0 40px 0;
   }
 
   > p {
@@ -53,6 +54,21 @@ const StyledLiveMode = styled.div`
     color: ${props => (props.exerciseRunning ? 'white' : 'black')};
     transition: color 2s;
     margin: 0;
+  }
+
+  .mode-name-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .mode-name {
+    margin: 5px;
+  }
+
+  .headphones-icon {
+    height: 20px;
+    margin: 5px;
   }
 `;
 

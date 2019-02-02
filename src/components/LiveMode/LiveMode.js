@@ -9,6 +9,7 @@ import SessionExerciseStepper from '../SessionExerciseStepper/SessionExerciseSte
 import ExerciseCard from '../ExerciseCard/ExerciseCard';
 import scoreSheet1 from '../ExerciseCard/pensativa_score_sheet_section_1.png';
 import scoreSheet2 from '../ExerciseCard/pensativa_score_sheet_section_2.png';
+import headphonesIcon from '../../assets/headphones.png';
 
 class LiveMode extends Component {
 
@@ -139,7 +140,10 @@ class LiveMode extends Component {
         exerciseRunning={this.state.exerciseRunning}
       >
         <div className='header-container'>
-          <p className='header-element'>Mode Live</p>
+          <div className='mode-name-container'>
+            <img src={headphonesIcon} className='headphones-icon' />
+            <p className='mode-name'>Mode Live</p>
+          </div>
           {this.state.exerciseRunning &&
             <Button className='header-element' onClick={this.handleQuit} >Quitter l'exercice</Button>
           }
@@ -182,7 +186,7 @@ class LiveMode extends Component {
           />
         </div>
         
-        <div id='buttonContainer'>
+        <div id='button-container'>
           <Button
             variant="contained"
             component={Link} 
