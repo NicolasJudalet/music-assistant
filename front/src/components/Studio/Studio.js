@@ -8,16 +8,17 @@ import StyledStudio from './Studio.style';
 import TextField from '@material-ui/core/TextField';
 
 class Studio extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
 
     this.state = {
       exerciseToAdd: {
         exerciseType: '',
         exerciseName: '',
-        totalTime: null,
-        description: '',
-      }
+        exerciseDescription: '',
+        totalTime: '',
+      },
+      exerciseList: [],
     }
   }
 
@@ -31,12 +32,26 @@ class Studio extends Component {
   };
 
   handleTextChange = name => event => {
-    this.setState((prevState) => ({
+    this.setState({
       exerciseToAdd: {
-        ...prevState.exerciseToAdd,
+        ...this.state.exerciseToAdd,
         [name]: event.target.value,
       }
-    }));
+    });
+  };
+
+  addExercise = () => {
+    const exerciseList = this.state.exerciseList;
+    exerciseList.push(this.state.exerciseToAdd);
+    this.setState({
+      exerciseList: exerciseList,
+      exerciseToAdd: {
+        exerciseType: '',
+        exerciseName: '',
+        exerciseDescription: '',
+        totalTime: '',
+      },
+    });
   };
 
   render() {
@@ -45,72 +60,67 @@ class Studio extends Component {
         <div>
           <p className='modeName'>Studio </p>
           <form className='formContainer'>
-            <FormControl fullWidth >
-              <InputLabel htmlFor="exerciseType" >Type</InputLabel>
-              <Select
-                value={this.state.exerciseToAdd.exerciseType}
-                onChange={this.handleSelectChange}
-                inputProps={{
-                  name: 'exerciseType',
-                  id: 'exerciseType',
-                }}
-              >
-                <MenuItem value="">
-                  <em>None</em>
-                </MenuItem>
-                <MenuItem value={'Rythme'}>Rythme</MenuItem>
-                <MenuItem value={'Mélodie'}>Mélodie</MenuItem>
-                <MenuItem value={'Voicings'}>Voicings</MenuItem>
-              </Select>
-            </FormControl>
+            <h2 className='formHeader'>Ajouter un exercice</h2>
+            <div className='inputContainer'>
+              <FormControl fullWidth >
+                <InputLabel htmlFor="exerciseType" >Type</InputLabel>
+                <Select
+                  value={this.state.exerciseToAdd.exerciseType}
+                  onChange={this.handleSelectChange}
+                  inputProps={{
+                    name: 'exerciseType',
+                    id: 'exerciseType',
+                  }}
+                >
+                  <MenuItem value="">
+                    <em>None</em>
+                  </MenuItem>
+                  <MenuItem value={'Rythme'}>Rythme</MenuItem>
+                  <MenuItem value={'Mélodie'}>Mélodie</MenuItem>
+                  <MenuItem value={'Voicings'}>Voicings</MenuItem>
+                </Select>
+              </FormControl>
 
-            <TextField
-              id='exerciseName'
-              label='Nom'
-              fullWidth
-              value={this.state.exerciseToAdd.exerciseName}
-              onChange={this.handleTextChange('exerciseName')}
-              margin='normal'
-            />
-
-            <div className='container'>
-              <label htmlFor='exerciseName' style={{ display: 'block' }}>
-                Nom
-              </label>
-              <input
+              <TextField
                 id='exerciseName'
-                type='text'
+                label='Nom'
+                fullWidth
+                value={this.state.exerciseToAdd.exerciseName}
+                onChange={this.handleTextChange('exerciseName')}
+                margin='normal'
+              />
+
+              <TextField
+                id='exerciseDescription'
+                label='Description'
+                fullWidth
+                value={this.state.exerciseToAdd.exerciseDescription}
+                onChange={this.handleTextChange('exerciseDescription')}
+                margin='normal'
+              />
+
+              <TextField
+                id="exerciseTime"
+                label="Durée (min)"
+                fullWidth
+                value={this.state.exerciseToAdd.totalTime}
+                onChange={this.handleTextChange('totalTime')}
+                type="number"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                margin="normal"
               />
             </div>
-
-            <div className='container'>
-              <label htmlFor='totalTime' style={{ display: 'block' }}>
-                Temps total
-              </label>
-              <input
-                id='totalTime'
-                type='text'
-              />
-            </div>
-
-            <div className='container'>
-              <label htmlFor='description' style={{ display: 'block' }}>
-                Description
-              </label>
-              <input
-                id='description'
-                type='text'
-              />
-            </div>
-
 
             <Button
-              type="button"
               className="outline"
-              onClick={()=>{}}
+              variant='contained'
+              color='primary'
+              onClick={this.addExercise}
               disabled={false}
             >
-              Add Exercise
+              Ajouter l'exercice
             </Button>
           </form>
         </div>
