@@ -7,6 +7,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import AddExerciseForm from './AddExerciseForm/AddExerciseForm';
 import StyledStudio from './Studio.style';
+import ExerciseTable from './ExerciseTable/ExerciseTable';
 
 class Studio extends Component {
   constructor(props) {
@@ -27,41 +28,11 @@ class Studio extends Component {
   };
 
   render() {
-
-    const rows = this.state.exerciseList;
-
     return (
       <StyledStudio>
-        <div>
-          <p className='modeName'>Studio </p>
-          <AddExerciseForm addExercise={this.addExercise} />
-          <div className='exerciseTableContainer'>
-            <Paper>
-              <Table>
-                <TableHead>
-                  <TableRow>
-                    <TableCell>Nom</TableCell>
-                    <TableCell align="right">Type</TableCell>
-                    <TableCell align="right">Description</TableCell>
-                    <TableCell align="right">Durée</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {rows.map(row => (
-                    <TableRow key={row.id}>
-                      <TableCell component="th" scope="row">
-                        {row.exerciseName}
-                      </TableCell>
-                      <TableCell align="right">{row.exerciseType}</TableCell>
-                      <TableCell align="right">{row.exerciseDescription}</TableCell>
-                      <TableCell align="right">{row.totalTime}</TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </Paper>
-          </div>
-        </div>
+        <p className='modeName'>Studio </p>
+        <AddExerciseForm addExercise={this.addExercise} />
+        <ExerciseTable exerciseList={this.state.exerciseList} />
       </StyledStudio>
     );
   }
