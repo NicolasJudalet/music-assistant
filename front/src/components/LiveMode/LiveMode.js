@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import PlayPauseButton from '../PlayPauseButton/PlayPauseButton';
-import ProgressBar from '../ProgressBar/ProgressBar';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import StyledLiveMode from './LiveMode.style';
 import SessionExerciseStepper from '../SessionExerciseStepper/SessionExerciseStepper';
@@ -54,22 +53,22 @@ class LiveMode extends Component {
   toggleTimer = (e) => {
     e.preventDefault();
     this.setState((previousState) => ({ timerRunning: !previousState.timerRunning }));
-    if (this.state.timerRunning || 
+    if (this.state.timerRunning ||
       this.state.steps[this.state.activeStep].totalTime === this.state.steps[this.state.activeStep].timeElapsed) {
       this.stopTimer();
     }
     else {
       this.startTimer();
-    } 
+    }
   }
 
   startTimer() {
     this.state.exerciseRunning = true;
     this.timer = setInterval(() => {
-      if (this.state.steps[this.state.activeStep].totalTime !== this.state.steps[this.state.activeStep].timeElapsed){
+      if (this.state.steps[this.state.activeStep].totalTime !== this.state.steps[this.state.activeStep].timeElapsed) {
         this.setState((prevState) => ({
           steps: [
-            ...prevState.steps.slice(0,prevState.activeStep),
+            ...prevState.steps.slice(0, prevState.activeStep),
             {
               ...prevState.steps[prevState.activeStep],
               timeElapsed: prevState.steps[prevState.activeStep].timeElapsed + 1,
@@ -89,7 +88,7 @@ class LiveMode extends Component {
       timerRunning: false,
       exerciseRunning: false,
       steps: [
-        ...prevState.steps.slice(0,prevState.activeStep),
+        ...prevState.steps.slice(0, prevState.activeStep),
         {
           ...prevState.steps[prevState.activeStep],
           completed: true,
@@ -104,7 +103,7 @@ class LiveMode extends Component {
   }
 
   handleNextStep = () => {
-    this.setState((prevState) => ({ 
+    this.setState((prevState) => ({
       activeStep: prevState.activeStep + 1,
     }));
   }
@@ -129,15 +128,15 @@ class LiveMode extends Component {
         <h1>{this.state.steps[this.state.activeStep].exerciseName}</h1>
 
         <div className='container'>
-          <PlayPauseButton 
+          <PlayPauseButton
             timerRunning={this.state.timerRunning}
             exerciseRunning={this.state.exerciseRunning}
             toggleTimerHandler={this.toggleTimer}
           />
           <div className='grow-container'>
-            <LinearProgress 
+            <LinearProgress
               variant="determinate"
-              value={Math.round(this.state.steps[this.state.activeStep].timeElapsed / this.state.steps[this.state.activeStep].totalTime * 100) } 
+              value={Math.round(this.state.steps[this.state.activeStep].timeElapsed / this.state.steps[this.state.activeStep].totalTime * 100)}
             />
           </div>
         </div>
@@ -147,32 +146,32 @@ class LiveMode extends Component {
         </p>
 
         <div className='container'>
-          <ExerciseCard 
-            classes={{card: "card", media: "media"}}
+          <ExerciseCard
+            classes={{ card: "card", media: "media" }}
             description={this.state.steps[this.state.activeStep].description}
             image={this.state.steps[this.state.activeStep].image}
           />
         </div>
-        
+
         <div className='container'>
-          <SessionExerciseStepper 
+          <SessionExerciseStepper
             activeStep={this.state.activeStep}
             display={!this.state.exerciseRunning}
             steps={this.state.steps}
             handleStep={this.handleStep}
           />
         </div>
-        
+
         <div id='buttonContainer'>
           <Button
             variant="contained"
-            component={Link} 
+            component={Link}
             to="/studio"
           >
             Retour en Studio
           </Button>
           {this.state.activeStep === this.state.steps.length - 1 ?
-            <Button 
+            <Button
               variant="contained"
               color="primary"
               component={Link}
@@ -180,7 +179,7 @@ class LiveMode extends Component {
             >
               Terminer la Session
             </Button> :
-            <Button 
+            <Button
               variant="contained"
               color="primary"
               onClick={this.handleNextStep}
