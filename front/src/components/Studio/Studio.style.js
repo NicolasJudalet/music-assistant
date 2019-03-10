@@ -51,6 +51,10 @@ const StyledStudio = styled.div`
   label {
     padding-right: 5px;
   }
+
+  .exerciseTableContainer {
+    margin: 20px;
+  }
   
   .modeName {
     text-align: left;

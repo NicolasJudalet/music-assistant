@@ -13,11 +13,13 @@ class AddExerciseForm extends Component {
 
     this.state = {
       exerciseToAdd: {
+        id: 0,
         exerciseType: '',
         exerciseName: '',
         exerciseDescription: '',
         totalTime: '',
       },
+      currentId: 0,
     }
   }
 
@@ -40,13 +42,16 @@ class AddExerciseForm extends Component {
   };
 
   resetExercise = () => {
+    const previousId = this.state.currentId;
     this.setState({
       exerciseToAdd: {
+        id: previousId + 1,
         exerciseType: '',
         exerciseName: '',
         exerciseDescription: '',
         totalTime: '',
-      }
+      },
+      currentId: previousId + 1,
     });
   }
 
