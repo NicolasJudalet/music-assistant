@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
+import { Redirect } from 'react-router-dom'
+import Button from '@material-ui/core/Button';
 import AddExerciseForm from './AddExerciseForm/AddExerciseForm';
 import StyledStudio from './Studio.style';
 import ExerciseTable from './ExerciseTable/ExerciseTable';
@@ -15,6 +11,7 @@ class Studio extends Component {
 
     this.state = {
       exerciseList: [],
+      startSession: false,
     }
   }
 
@@ -24,14 +21,36 @@ class Studio extends Component {
     this.setState({
       exerciseList: exerciseList
     });
-    debugger;
   };
 
+  startSession = () => {
+    this.setState({ startSession: true });
+  }
+
   render() {
+    if (this.state.startSession) {
+      return (
+        <Redirect to={{
+          pathname: '/live-mode',
+          state: { exerciseList: this.state.exerciseList }
+        }}
+        />
+      );
+    }
     return (
       <StyledStudio>
         <p className='modeName'>Studio </p>
         <AddExerciseForm addExercise={this.addExercise} />
+        <div className='startSessionButtonContainer'>
+          <Button
+            variant='contained'
+            color='primary'
+            onClick={this.startSession}
+            disabled={false}
+          >
+            Démarrer la session
+          </Button>
+        </div>
         <ExerciseTable exerciseList={this.state.exerciseList} />
       </StyledStudio>
     );

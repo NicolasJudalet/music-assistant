@@ -7,46 +7,26 @@ import StyledLiveMode from './LiveMode.style';
 import SessionExerciseStepper from '../SessionExerciseStepper/SessionExerciseStepper';
 import ExerciseCard from '../ExerciseCard/ExerciseCard';
 import scoreSheet1 from '../ExerciseCard/pensativa_score_sheet_section_1.png';
-import scoreSheet2 from '../ExerciseCard/pensativa_score_sheet_section_2.png';
 
 class LiveMode extends Component {
 
   constructor(props) {
     super(props);
 
+    const exerciseList = this.props.location.state.exerciseList;
+    const steps = exerciseList.map((exercise) => {
+      return Object.assign({
+        completed: false,
+        timeElapsed: 0,
+        image: scoreSheet1,
+      }, exercise)
+    })
+
     this.state = {
       timerRunning: false,
       exerciseRunning: false,
       activeStep: 0,
-      steps: [
-        {
-          exerciseType: 'Rythme',
-          exerciseName: '7 temps équivalences',
-          completed: false,
-          timeElapsed: 0,
-          totalTime: 3,
-          description: 'Répéter l\'équivalence rythmique ci-dessus',
-          image: scoreSheet1,
-        },
-        {
-          exerciseType: 'Mélodie',
-          exerciseName: 'Mains unisson',
-          completed: false,
-          timeElapsed: 0,
-          totalTime: 900,
-          description: 'Jouer le solo de Kurt Rosenwinkel m.g. et m.d. à l\'unisson',
-          image: scoreSheet2,
-        },
-        {
-          exerciseType: 'Voicings',
-          exerciseName: 'Pensativa section 1',
-          completed: false,
-          timeElapsed: 0,
-          totalTime: 1200,
-          description: 'Trouver une nouvelle série de voicings m.g. sur le A de Pensativa',
-          image: scoreSheet2,
-        },
-      ],
+      steps: steps,
     };
   }
 
@@ -60,10 +40,12 @@ class LiveMode extends Component {
     else {
       this.startTimer();
     }
-  }
+  };
 
   startTimer() {
-    this.state.exerciseRunning = true;
+    this.setState({
+      exerciseRunning: true,
+    });
     this.timer = setInterval(() => {
       if (this.state.steps[this.state.activeStep].totalTime !== this.state.steps[this.state.activeStep].timeElapsed) {
         this.setState((prevState) => ({
@@ -142,7 +124,7 @@ class LiveMode extends Component {
         </div>
 
         <p>
-          {this.state.steps[this.state.activeStep].totalTime / 60} min
+          {this.state.steps[this.state.activeStep].totalTime} min
         </p>
 
         <div className='container'>

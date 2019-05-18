@@ -64,6 +64,10 @@ const StyledStudio = styled.div`
     padding-block-start: 1em;
     margin-block-start: 0;
   }
+
+  .startSessionButtonContainer {
+    margin: 20px 0;
+  }
 `;
 
 export default StyledStudio;
