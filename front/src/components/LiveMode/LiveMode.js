@@ -106,13 +106,13 @@ class LiveMode extends Component {
     this.setState((prevState) => ({
       activeStep: prevState.activeStep + 1,
     }));
-  }
+  };
 
   handleStep = step => () => {
     this.setState({
       activeStep: step,
     });
-  }
+  };
 
   componentWillUnmount() {
     this.stopTimer();

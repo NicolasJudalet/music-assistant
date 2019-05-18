@@ -1,24 +1,26 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Button from '@material-ui/core/Button';
+import StyledHome from './Home.style.js';
 
 class Home extends Component {    
     render() {
         return (
-            <div>
-                <h1>Welcome to the music assistant !</h1>
-                <p>Where would you like to go ?</p>
-                <ul>
-                    <li>
-                        <Link to='/stars-factory'>Stars Factory</Link>
-                    </li>
-                    <li>
-                        <Link to='/studio'>Studio</Link>
-                    </li>
-                    <li>
-                        <Link to='/live-mode'>Live Mode</Link>
-                    </li>
-                </ul>
-            </div>
+            <StyledHome>
+                <div className='container'>
+                    <h1 className='title'>Herbie</h1>
+                    <h2 className='subtitle'>Your musical coach</h2>
+
+                    <Button
+                        className="outline"
+                        variant='contained'
+                        color='primary'
+                        disabled={false}
+                    >
+                        <Link to='/studio' id='startButton'>Start a session</Link>
+                    </Button>
+                </div>
+            </StyledHome>
         ) 
     }
 }
