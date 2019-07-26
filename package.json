@@ -8,6 +8,7 @@
     "formik": "^1.3.1",
     "gh-pages": "^2.0.1",
     "material-ui": "^0.20.2",
+    "netlify-cli": "^2.11.31",
     "rc-progress": "^2.2.5",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
@@ -25,5 +26,5 @@
     "predeploy": "yarn run build",
     "deploy": "gh-pages -d build"
   },
-  "homepage": "https://NicolasJudalet.github.io/music-assistant"
+  "homepage": "https://herbie-music-assistant.netlify.com"
 }
