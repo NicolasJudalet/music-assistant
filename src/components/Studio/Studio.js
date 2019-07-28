@@ -5,6 +5,8 @@ import AddExerciseForm from './AddExerciseForm/AddExerciseForm';
 import StyledStudio from './Studio.style';
 import ExerciseTable from './ExerciseTable/ExerciseTable';
 
+var request = require('ajax-request');
+
 class Studio extends Component {
   constructor(props) {
     super(props);
@@ -16,6 +18,23 @@ class Studio extends Component {
   }
 
   addExercise = (exerciseToAdd) => {
+    request.post({
+      url: 'http://localhost:8000/api/exercises',
+      data: {
+        description: 'La desciption du front'
+      },
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }, function (err, res) {
+      if (res) {
+        console.log(res);
+      }
+      if (err) {
+        console.log(err);
+      }
+    });
+
     const exerciseList = this.state.exerciseList;
     exerciseList.push(exerciseToAdd);
     this.setState({
