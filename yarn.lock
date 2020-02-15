@@ -2676,7 +2676,7 @@ css-color-names@0.0.4:
 
 css-in-js-utils@^2.0.0:
   version "2.0.1"
-  resolved "http://registry.npmjs.org/css-in-js-utils/-/css-in-js-utils-2.0.1.tgz#3b472b398787291b47cfe3e44fecfdd9e914ba99"
+  resolved "https://registry.npmjs.org/css-in-js-utils/-/css-in-js-utils-2.0.1.tgz#3b472b398787291b47cfe3e44fecfdd9e914ba99"
   dependencies:
     hyphenate-style-name "^1.0.2"
     isobject "^3.0.1"
@@ -8383,7 +8383,7 @@ react-event-listener@^0.6.2:
 
 react-fast-compare@^1.0.0:
   version "1.0.0"
-  resolved "http://registry.npmjs.org/react-fast-compare/-/react-fast-compare-1.0.0.tgz#813a039155e49b43ceffe99528fe5e9d97a6c938"
+  resolved "https://registry.npmjs.org/react-fast-compare/-/react-fast-compare-1.0.0.tgz#813a039155e49b43ceffe99528fe5e9d97a6c938"
 
 react-is@^16.3.1:
   version "16.5.0"
@@ -10638,9 +10638,9 @@ yargs@~3.10.0:
     window-size "0.1.0"
 
 yarn@^1.15.0:
-  version "1.17.3"
-  resolved "https://manomano.jfrog.io/manomano/api/npm/npm-all/yarn/-/yarn-1.17.3.tgz#60e0b77d079eb78e753bb616f7592b51b6a9adce"
-  integrity sha1-YOC3fQeet451O7YW91krUbaprc4=
+  version "1.22.0"
+  resolved "https://registry.yarnpkg.com/yarn/-/yarn-1.22.0.tgz#acf82906e36bcccd1ccab1cfb73b87509667c881"
+  integrity sha512-KMHP/Jq53jZKTY9iTUt3dIVl/be6UPs2INo96+BnZHLKxYNTfwMmlgHTaMWyGZoO74RI4AIFvnWhYrXq2USJkg==
 
 yauzl@^2.4.2:
   version "2.10.0"
