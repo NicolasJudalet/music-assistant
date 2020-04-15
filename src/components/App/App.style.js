@@ -1,11 +1,11 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const StyledApp = styled.div`
-  height:100%;
+    height: 100%;
 
-  > div {
-    height:100%;
-  }
-`;
+    > div {
+        height: 100%;
+    }
+`
 
-export default StyledApp;
+export default StyledApp
