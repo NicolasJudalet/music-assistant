@@ -15,7 +15,7 @@ class PlayPauseButton extends Component {
                 return pauseIconGray
             case 1:
                 return playIconGray
-            case 0:
+            default:
                 return playIconBlack
         }
     }
