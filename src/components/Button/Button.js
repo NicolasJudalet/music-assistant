@@ -1,33 +1,34 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 
 class Button extends Component {
-   constructor() {
-       super();
+    constructor() {
+        super()
 
-       this.state = {
-           color: 'blue',
-           initialColor: 'beige',
-       }
-   }
+        this.state = {
+            color: 'blue',
+            initialColor: 'beige',
+        }
+    }
 
-   handleClick() {
-       this.setState({
+    handleClick() {
+        this.setState({
             color: 'blue' === this.state.color ? 'red' : 'blue',
-       });
-   }
+        })
+    }
 
-   render() {
-       return (
-           <button 
-                onClick={this.handleClick} 
+    render() {
+        return (
+            <button
+                onClick={this.handleClick}
                 style={{
                     color: this.state.color,
                     backgroundColor: this.initialColor,
-                }}>
-               New Button
-           </button>
-       )
-   }
-}   
+                }}
+            >
+                New Button
+            </button>
+        )
+    }
+}
 
 export default Button

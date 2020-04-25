@@ -1,9 +1,9 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 const StyledExerciseTable = styled.div`
-  .exerciseTableContainer {
-    margin: 20px;
-  }
-`;
+    .exerciseTableContainer {
+        margin: 20px;
+    }
+`
 
-export default StyledExerciseTable;
+export default StyledExerciseTable
