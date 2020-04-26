@@ -7,7 +7,9 @@ import StyledPlayPauseButton from './PlayPauseButton.style';
 class PlayPauseButton extends Component {
   getIcon = () => {
     let code;
-    code = 10 * (this.props.timerRunning && this.props.exerciseRunning) + this.props.exerciseRunning
+    code =
+      10 * (this.props.timerRunning && this.props.exerciseRunning) +
+      this.props.exerciseRunning;
     switch (code) {
       case 11:
         return pauseIconGray;
@@ -16,7 +18,7 @@ class PlayPauseButton extends Component {
       case 0:
         return playIconBlack;
     }
-  }
+  };
 
   render() {
     return (
@@ -26,12 +28,12 @@ class PlayPauseButton extends Component {
       >
         <img
           src={this.getIcon()}
-          alt='play pause'
+          alt="play pause"
           onClick={this.props.toggleTimerHandler}
         />
       </StyledPlayPauseButton>
-    )
+    );
   }
 }
 
-export default PlayPauseButton
+export default PlayPauseButton;
