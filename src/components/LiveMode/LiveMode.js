@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
-import LinearProgress from '@material-ui/core/LinearProgress';
 
-import PlayPauseButton from '../PlayPauseButton/PlayPauseButton';
 import SessionExerciseStepper from '../SessionExerciseStepper/SessionExerciseStepper';
-import ExerciseCard from '../ExerciseCard/ExerciseCard';
 import PageHeader from '../PageHeader/PageHeader';
+import ExercisePanel from '../ExercisePanel/ExercisePanel';
 
 import StyledLiveMode from './LiveMode.style';
 
@@ -117,37 +115,13 @@ class LiveMode extends Component {
   render() {
     return (
       <StyledLiveMode exerciseRunning={this.state.exerciseRunning}>
-        <PageHeader />
-        <h2>{this.state.steps[this.state.activeStep].exerciseType}</h2>
-        <h1>{this.state.steps[this.state.activeStep].exerciseName}</h1>
-
-        <div className="container">
-          <PlayPauseButton
-            timerRunning={this.state.timerRunning}
-            exerciseRunning={this.state.exerciseRunning}
-            toggleTimerHandler={this.toggleTimer}
-          />
-          <div className="grow-container">
-            <LinearProgress
-              variant="determinate"
-              value={Math.round(
-                (this.state.steps[this.state.activeStep].timeElapsed /
-                  this.state.steps[this.state.activeStep].totalTime) *
-                  100
-              )}
-            />
-          </div>
-        </div>
-
-        <p>{this.state.steps[this.state.activeStep].totalTime} min</p>
-
-        <div className="container">
-          <ExerciseCard
-            classes={{ card: 'card', media: 'media' }}
-            description={this.state.steps[this.state.activeStep].description}
-            image={this.state.steps[this.state.activeStep].image}
-          />
-        </div>
+        <PageHeader exerciseRunning={this.state.exerciseRunning} />
+        <ExercisePanel
+          timerRunning={this.state.timerRunning}
+          exerciseRunning={this.state.exerciseRunning}
+          toggleTimerHandler={this.toggleTimer}
+          activeStepInfo={this.state.steps[this.state.activeStep]}
+        />
 
         <div className="container">
           <SessionExerciseStepper
