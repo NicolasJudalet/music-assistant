@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import Button from '@material-ui/core/Button';
 
-import SessionExerciseStepper from '../SessionExerciseStepper/SessionExerciseStepper';
 import PageHeader from '../PageHeader/PageHeader';
 import ExercisePanel from '../ExercisePanel/ExercisePanel';
+import SessionPanel from '../SessionPanel/SessionPanel';
 
 import StyledLiveMode from './LiveMode.style';
 
@@ -122,39 +120,13 @@ class LiveMode extends Component {
           toggleTimerHandler={this.toggleTimer}
           activeStepInfo={this.state.steps[this.state.activeStep]}
         />
-
-        <div className="container">
-          <SessionExerciseStepper
-            activeStep={this.state.activeStep}
-            display={!this.state.exerciseRunning}
-            steps={this.state.steps}
-            handleStep={this.handleStep}
-          />
-        </div>
-
-        <div id="buttonContainer">
-          <Button variant="contained" component={Link} to="/studio">
-            Retour en Studio
-          </Button>
-          {this.state.activeStep === this.state.steps.length - 1 ? (
-            <Button
-              variant="contained"
-              color="primary"
-              component={Link}
-              to="/studio"
-            >
-              Terminer la Session
-            </Button>
-          ) : (
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={this.handleNextStep}
-            >
-              Exercice Suivant
-            </Button>
-          )}
-        </div>
+        <SessionPanel
+          activeStep={this.state.activeStep}
+          exerciseRunning={this.state.exerciseRunning}
+          steps={this.state.steps}
+          handleStep={this.handleStep}
+          handleNextStep={this.handleNextStep}
+        />
       </StyledLiveMode>
     );
   }
